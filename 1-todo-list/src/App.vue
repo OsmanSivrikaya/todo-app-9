@@ -4,7 +4,7 @@
       class="bg-gray-700 rounded-md shadow-md text-white w-1/3 mx-auto p-3 mt-10"
     >
       <add-section :AddTodo="AddTodo"></add-section>
-      <todo-list :todoList="todoList"></todo-list>
+      <todo-list :todoList="todoList" @delete-event="deleteItem"></todo-list>
     </div>
   </div>
 </template>
@@ -24,10 +24,14 @@ export default {
       todoList.value.push({
         id: new Date().getTime(),
         title: todoText,
-      })
+      });
     };
 
-    return { todoList, AddTodo };
+    const deleteItem = (todo) => {
+      todoList.value = todoList.value.filter(x => x.id != todo.id);
+    };
+
+    return { todoList, AddTodo, deleteItem };
   },
 };
 </script>

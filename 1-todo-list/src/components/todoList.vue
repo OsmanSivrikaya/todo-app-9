@@ -1,9 +1,9 @@
 <template>
   <section class="mt-4">
     <h3 class="text-center text-2xl">TodoList</h3>
-    <todo-list-item v-for="todoItem in todoList" :key="todoItem.id" :todo="todoItem"></todo-list-item>
+    <todo-list-item @delete-event="$emit('delete-event', $event)" v-for="todoItem in todoList" :key="todoItem.id" :todo="todoItem"></todo-list-item>
 
-    <summary-component></summary-component>
+    <summary-component :todoList="todoList"></summary-component>
   </section>
 </template>
 <script>
